@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studora | Study & Fun</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f5ff;
+      color: #30294a;
+    }
+
+    header {
+      background: #7965cc;
+      color: white;
+      padding: 25px 16px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 38px;
+    }
+
+    header p {
+      margin-bottom: 0;
+    }
+
+    nav {
+      background: white;
+      padding: 14px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      color: #6b55bc;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 8px;
+    }
+
+    main {
+      max-width: 850px;
+      margin: auto;
+      padding: 20px 14px;
+    }
+
+    .welcome {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      margin: 18px 0;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px #30294a12;
+    }
+
+    .card h2 {
+      color: #7965cc;
+      margin-top: 0;
+    }
+
+    button {
+      background: #7965cc;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5c48ad;
+    }
+
+    #task {
+      width: 68%;
+      padding: 12px;
+      border: 1px solid #d7d0ef;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    #taskList {
+      padding-left: 22px;
+    }
+
+    #taskList li {
+      padding: 8px 0;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #eee8ff;
+      color: #665b88;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Studora 🦋</h1>
+    <p>Your little corner to learn, grow and have fun.</p>
+  </header>
+
+  <nav>
+    <a href="#study">Study</a>
+    <a href="#planner">Planner</a>
+    <a href="#fun">Fun</a>
+  </nav>
+
+  <main>
+    <section class="welcome">
+      <h2>Hey, learner! 💜</h2>
+      <p>Every little step brings you closer to your dreams.</p>
+    </section>
+
+    <section class="card" id="study">
+      <h2>📚 Study Zone</h2>
+      <p>Choose one subject and start learning today.</p>
+      <button onclick="showMessage('Time to learn something new! 📖')">
+        Start Studying
+      </button>
+    </section>
+
+    <section class="card" id="planner">
+      <h2>📝 My Study Planner</h2>
+      <p>Add a task you want to complete.</p>
+
+      <input id="task" type="text"
+        placeholder="e.g. Complete maths homework">
+
+      <button onclick="addTask()">Add</button>
+
+      <ul id="taskList"></ul>
+    </section>
+
+    <section class="card">
+      <h2>✨ Daily Motivation</h2>
+      <p id="quote">Believe in your little steps.</p>
+      <button onclick="newQuote()">New Quote</button>
+    </section>
+
+    <section class="card" id="fun">
+      <h2>🎮 Fun Break</h2>
+      <p>Take a little break and refresh your mind.</p>
+      <button onclick="showMessage('You deserve a little break! 💗')">
+        Take a Break
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    Made with 💜 for curious minds.<br>
+    © 2026 Studora
+  </footer>
+
+  <script>
+    function showMessage(message) {
+      alert(message);
+    }
+
+    function addTask() {
+      const input = document.getElementById("task");
+      const task = input.value.trim();
+
+      if (task === "") {
+        alert("Please enter a task first!");
+        return;
+      }
+
+      const item = document.createElement("li");
+      item.textContent = task;
+
+      item.onclick = function () {
+        item.remove();
+      };
+
+      document.getElementById("taskList").appendChild(item);
+      input.value = "";
+    }
+
+    const quotes = [
+      "Small steps every day lead to big dreams. 🌷",
+      "You are capable of learning amazing things. 🦋",
+      "Progress matters more than perfection. 💜",
+      "Keep going, future you will be proud. ✨",
+      "Your dreams deserve your effort. 🌸"
+    ];
+
+    let quoteIndex = 0;
+
+    function newQuote() {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("quote").textContent =
+        quotes[quoteIndex];
+    }
+  </script>
+</body>
+</html>
